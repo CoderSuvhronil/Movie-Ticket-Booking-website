@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyShow - Indian Movie Tickets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" class="css">
+    <script src="script.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">🎬 BookMyShow</h1>
+            <div class="space-x-4">
+                <button onclick="showSection('home')" class="hover:bg-white hover:bg-opacity-20 px-4 py-2 rounded">Home</button>
+                <button onclick="showSection('movies')" class="hover:bg-white hover:bg-opacity-20 px-4 py-2 rounded">Movies</button>
+                <button onclick="showSection('multiplexes')" class="hover:bg-white hover:bg-opacity-20 px-4 py-2 rounded">Multiplexes</button>
+                <button onclick="showSection('login')" class="hover:bg-white hover:bg-opacity-20 px-4 py-2 rounded">Login</button>
+                <button onclick="showSection('admin')" class="hover:bg-white hover:bg-opacity-20 px-4 py-2 rounded">Admin</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home" class="section">
+        <div class="bollywood-gradient text-white py-20">
+            <div class="container mx-auto text-center">
+                <h2 class="text-5xl font-bold mb-4">Welcome to BookMyShow</h2>
+                <p class="text-xl mb-8">Book your favorite Indian movies instantly!</p>
+                <button onclick="showSection('movies')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                    Book Now
+                </button>
+            </div>
+        </div>
+        
+        <div class="container mx-auto py-16 px-4">
+            <h3 class="text-3xl font-bold text-center mb-12">Featured Movies</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="movie-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://i.ytimg.com/vi/bZjtY7Tlj4Y/maxresdefault.jpg" alt="Pathaan" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">Pathaan</h4>
+                        <p class="text-gray-600 mb-4">Action • Hindi • 2h 26m</p>
+                        <button onclick="selectMovie('Pathaan')" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                            Book Tickets
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="movie-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://i.ytimg.com/vi/6ZAqt0rbMUw/sddefault.jpg" alt="Jawaan" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">Jawaan</h4>
+                        <p class="text-gray-600 mb-4">Action • Hindi • 2h 49m</p>
+                        <button onclick="selectMovie('Jawaan')" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                            Book Tickets
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="movie-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://i.ytimg.com/vi/t739wOpXRYU/sddefault.jpg" alt="Animal" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">Animal</h4>
+                        <p class="text-gray-600 mb-4">Action • Hindi • 3h 21m</p>
+                        <button onclick="selectMovie('Animal')" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                            Book Tickets
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movies Section -->
+    <div id="movies" class="section hidden">
+        <div class="container mx-auto py-8 px-4">
+            <h2 class="text-3xl font-bold mb-8">All Movies</h2>
+            
+            <!-- Filter Options -->
+            <div class="mb-8 flex flex-wrap gap-4">
+                <select id="languageFilter" class="px-4 py-2 border rounded-lg">
+                    <option value="">All Languages</option>
+                    <option value="hindi">Hindi</option>
+                    <option value="tamil">Tamil</option>
+                    <option value="telugu">Telugu</option>
+                </select>
+                
+                <select id="genreFilter" class="px-4 py-2 border rounded-lg">
+                    <option value="">All Genres</option>
+                    <option value="action">Action</option>
+                    <option value="drama">Drama</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="romance">Romance</option>
+                    <option value="thriller">Thriller</option>
+                </select>
+            </div>
+            
+            <!-- Movies Grid -->
+            <div id="moviesGrid" class="grid md:grid-cols-4 gap-6">
+                <!-- Movies will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Multiplexes Section -->
+    <div id="multiplexes" class="section hidden">
+        <div class="container mx-auto py-8 px-4">
+            <h2 class="text-3xl font-bold mb-8">Movie Theaters & Multiplexes</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Kolkata Multiplexes -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">PVR Acropolis Mall</h3>
+                    <p class="text-gray-600 mb-4">📍 Acropolis Mall, Kolkata</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Screen 1</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 2</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 3</span>
+                            <span class="text-red-600">Housefull</span>
+                        </div>
+                    </div>
+                    <button onclick="selectMultiplex('PVR Acropolis Mall')" class="w-full mt-4 bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                        Select Theater
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">INOX South City</h3>
+                    <p class="text-gray-600 mb-4">📍 South City Mall, Kolkata</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Screen 1</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 2</span>
+                            <span class="text-yellow-600">Fast Filling</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 3</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                    </div>
+                    <button onclick="selectMultiplex('INOX South City')" class="w-full mt-4 bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                        Select Theater
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">Cinepolis Lake Mall</h3>
+                    <p class="text-gray-600 mb-4">📍 Lake Mall, Kolkata</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Screen 1</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 2</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                    </div>
+                    <button onclick="selectMultiplex('Cinepolis Lake Mall')" class="w-full mt-4 bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                        Select Theater
+                    </button>
+                </div>
+
+                <!-- Durgapur Multiplexes -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">PVR Junction Mall</h3>
+                    <p class="text-gray-600 mb-4">📍 Junction Mall, Durgapur</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Screen 1</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 2</span>
+                            <span class="text-yellow-600">Fast Filling</span>
+                        </div>
+                    </div>
+                    <button onclick="selectMultiplex('PVR Junction Mall')" class="w-full mt-4 bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                        Select Theater
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">INOX City Centre</h3>
+                    <p class="text-gray-600 mb-4">📍 City Centre, Durgapur</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Screen 1</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 2</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                    </div>
+                    <button onclick="selectMultiplex('INOX City Centre')" class="w-full mt-4 bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                        Select Theater
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">SVF Cinemas</h3>
+                    <p class="text-gray-600 mb-4">📍 Benachity, Durgapur</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Screen 1</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 2</span>
+                            <span class="text-red-600">Housefull</span>
+                        </div>
+                    </div>
+                    <button onclick="selectMultiplex('SVF Cinemas')" class="w-full mt-4 bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                        Select Theater
+                    </button>
+                </div>
+
+                <!-- Asansol Multiplexes -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">Cine Cosmo</h3>
+                    <p class="text-gray-600 mb-4">📍 Sentrum Mall, Asansol</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Screen 1</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 2</span>
+                            <span class="text-yellow-600">Fast Filling</span>
+                        </div>
+                    </div>
+                    <button onclick="selectMultiplex('Cine Cosmo')" class="w-full mt-4 bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                        Select Theater
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">Bioscope</h3>
+                    <p class="text-gray-600 mb-4">📍 Galaxy Mall, Asansol</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Screen 1</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Screen 2</span>
+                            <span class="text-green-600">Available</span>
+                        </div>
+                    </div>
+                    <button onclick="selectMultiplex('Bioscope')" class="w-full mt-4 bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
+                        Select Theater
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login/Registration Section -->
+    <div id="login" class="section hidden">
+        <div class="min-h-screen flex items-center justify-center py-12 px-4">
+            <div class="max-w-md w-full space-y-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-900">Welcome Back</h2>
+                    <p class="mt-2 text-gray-600">Sign in to your account or create a new one</p>
+                </div>
+                
+                <!-- Login Form -->
+                <div id="loginForm" class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-6 text-center">Login</h3>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                <input type="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition">
+                                Sign In
+                            </button>
+                        </div>
+                    </form>
+                    <p class="mt-4 text-center text-sm text-gray-600">
+                        Don't have an account? 
+                        <button onclick="showRegistration()" class="text-purple-600 hover:text-purple-500">Sign up</button>
+                    </p>
+                </div>
+                
+                <!-- Registration Form -->
+                <div id="registrationForm" class="bg-white p-8 rounded-lg shadow-lg hidden">
+                    <h3 class="text-xl font-semibold mb-6 text-center">Create Account</h3>
+                    <form onsubmit="handleRegistration(event)">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                <input type="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                                <input type="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition">
+                                Create Account
+                            </button>
+                        </div>
+                    </form>
+                    <p class="mt-4 text-center text-sm text-gray-600">
+                        Already have an account? 
+                        <button onclick="showLogin()" class="text-purple-600 hover:text-purple-500">Sign in</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Section -->
+    <div id="admin" class="section hidden">
+        <div class="container mx-auto py-8 px-4">
+            <h2 class="text-3xl font-bold mb-8">Admin Dashboard</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Total Bookings</h3>
+                    <p class="text-3xl font-bold text-purple-600">1,247</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Revenue Today</h3>
+                    <p class="text-3xl font-bold text-green-600">₹2,45,680</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Active Users</h3>
+                    <p class="text-3xl font-bold text-blue-600">856</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold mb-4">Add New Movie</h3>
+                <form onsubmit="addMovie(event)" class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Movie Title</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Language</label>
+                        <select required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            <option value="">Select Language</option>
+                            <option value="hindi">Hindi</option>
+                            <option value="tamil">Tamil</option>
+                            <option value="telugu">Telugu</option>
+                            <option value="kannada">Kannada</option>
+                            <option value="malayalam">Malayalam</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Genre</label>
+                        <select required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            <option value="">Select Genre</option>
+                            <option value="action">Action</option>
+                            <option value="drama">Drama</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="romance">Romance</option>
+                            <option value="thriller">Thriller</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Duration</label>
+                        <input type="text" placeholder="2h 30m" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="md:col-span-2">
+                        <button type="submit" class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700">
+                            Add Movie
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seat Selection Section -->
+    <div id="seatSelection" class="section hidden">
+        <div class="container mx-auto py-8 px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Select Your Seats</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                    <div class="text-center mb-6">
+                        <div class="bg-gray-800 text-white py-2 px-8 rounded-lg inline-block mb-4">
+                            🎬 SCREEN
+                        </div>
+                    </div>
+                    
+                    <!-- Seat Map -->
+                    <div id="seatMap" class="space-y-2">
+                        <!-- Seats will be generated by JavaScript -->
+                    </div>
+                    
+                    <!-- Legend -->
+                    <div class="flex justify-center space-x-6 mt-6">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-green-500 rounded mr-2"></div>
+                            <span>Available</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-yellow-500 rounded mr-2"></div>
+                            <span>Selected</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-red-500 rounded mr-2"></div>
+                            <span>Booked</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Booking Summary -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Booking Summary</h3>
+                    <div id="bookingSummary" class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span>Movie:</span>
+                            <span id="selectedMovie">-</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Theater:</span>
+                            <span id="selectedTheater">-</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Seats:</span>
+                            <span id="selectedSeats">-</span>
+                        </div>
+                        <div class="flex justify-between font-semibold">
+                            <span>Total:</span>
+                            <span id="totalAmount">₹0</span>
+                        </div>
+                    </div>
+                    <button onclick="proceedToPayment()" class="w-full bg-purple-600 text-white py-3 rounded-md hover:bg-purple-700 transition">
+                        Proceed to Payment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Section -->
+    <div id="payment" class="section hidden">
+        <div class="min-h-screen flex items-center justify-center py-12 px-4">
+            <div class="max-w-md w-full">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-center">Payment</h2>
+                    
+                    <!-- Payment Methods -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-4">Select Payment Method</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="paymentMethod" value="credit" class="mr-3">
+                                <span>💳 Credit Card</span>
+                            </label>
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="paymentMethod" value="debit" class="mr-3">
+                                <span>💳 Debit Card</span>
+                            </label>
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="paymentMethod" value="upi" class="mr-3">
+                                <span>📱 UPI</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Payment Form -->
+                    <div id="cardPayment" class="hidden">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                                <input type="text" placeholder="1234 5678 9012 3456" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Expiry</label>
+                                    <input type="text" placeholder="MM/YY" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                                    <input type="text" placeholder="123" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+                                <input type="text" placeholder="John Doe" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UPI Payment Form -->
+                    <div id="upiPayment" class="hidden">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">UPI ID</label>
+                                <input type="text" placeholder="user@paytm" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600 mb-2">Or scan QR code</p>
+                                <div class="w-32 h-32 bg-gray-200 mx-auto rounded-lg flex items-center justify-center">
+                                    <span class="text-4xl">📱</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Summary -->
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                        <div class="flex justify-between mb-2">
+                            <span>Tickets:</span>
+                            <span id="paymentTickets">-</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Convenience Fee:</span>
+                            <span>₹25</span>
+                        </div>
+                        <div class="flex justify-between font-semibold text-lg">
+                            <span>Total Amount:</span>
+                            <span id="paymentTotal">₹0</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="processPayment()" class="w-full mt-6 bg-green-600 text-white py-3 rounded-md hover:bg-green-700 transition">
+                        Pay Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Section -->
+    <div id="success" class="section hidden">
+        <div class="min-h-screen flex items-center justify-center py-12 px-4">
+            <div class="max-w-md w-full text-center">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="text-6xl mb-4">🎉</div>
+                    <h2 class="text-2xl font-bold mb-4 text-green-600">Booking Confirmed!</h2>
+                    <p class="text-gray-600 mb-6">Your movie tickets have been booked successfully.</p>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6 text-left">
+                        <h3 class="font-semibold mb-2">Booking Details:</h3>
+                        <div class="space-y-1 text-sm">
+                            <div>Booking ID: <span class="font-mono">BMS123456789</span></div>
+                            <div>Movie: <span id="confirmMovie">-</span></div>
+                            <div>Theater: <span id="confirmTheater">-</span></div>
+                            <div>Seats: <span id="confirmSeats">-</span></div>
+                            <div>Show Time: 7:00 PM</div>
+                            <div>Date: Today</div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="showSection('home')" class="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition">
+                        Book More Tickets
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
