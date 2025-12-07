@@ -7,16 +7,18 @@ let seatPrice = 200;
 
 // Sample movie data
 const movies = [
-    { title: 'Saiyaara', language: 'hindi', genre: 'Romance', duration: '2h 15m', image: 'https://m.media-amazon.com/images/M/MV5BNTEyYjI2NjEtMjU1Ni00Yzc1LWFmZTQtNmQzM2FhYzE2MjNlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' },
-    { title: 'Pathaan', language: 'hindi', genre: 'Action', duration: '2h 26m', image: 'https://m.media-amazon.com/images/M/MV5BNTU2MzZkNDMtYTM3Yy00ZjEyLTljZDUtNWZhYTNjYWRlODc5XkEyXkFqcGc@._V1_.jpg' },
-    { title: 'Jawaan', language: 'hindi', genre: 'Action', duration: '2h 49m', image: 'https://i.ytimg.com/vi/6ZAqt0rbMUw/sddefault.jpg' },
-    { title: 'Dunki', language: 'hindi', genre: 'Drama', duration: '2h 41m', image: 'https://media.assettype.com/kashmirtimes%2F2025-02-11%2Fo8t5x82a%2FDunki-movie-poster.webp?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100' },
-    { title: 'Housefull 5', language: 'hindi', genre: 'Comedy', duration: '2h 30m', image: 'https://i.ytimg.com/vi/zUh8Z9fGF6Q/maxresdefault.jpg' },
+    { title: 'Saiyaara', language: 'hindi', genre: 'Romance', duration: '2h 15m', image: 'https://media-cache.cinematerial.com/p/500x/mwbgqsi1/saiyaara-indian-movie-poster.jpg?v=1753463453' },
+    { title: 'Pathaan', language: 'hindi', genre: 'Action', duration: '2h 26m', image: 'https://i.pinimg.com/736x/6a/6d/b9/6a6db9a959576836fd5c42c8bc41d565.jpg' },
+    { title: 'Jawaan', language: 'hindi', genre: 'Action', duration: '2h 49m', image: 'https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-sn4rud7dsil9l7enke2va06207-20230906130859.Medi.jpeg' },
+    { title: 'Dunki', language: 'hindi', genre: 'Drama', duration: '2h 41m', image: 'https://stat4.bollywoodhungama.in/wp-content/uploads/2021/01/Dunki-2.jpg' },
+    { title: 'Housefull 5', language: 'hindi', genre: 'Comedy', duration: '2h 30m', image: 'https://assets-in.bmscdn.com/discovery-catalog/events/et00363347-jfmgxfggwz-landscape.jpg' },
     { title: 'Bhool Bhulaiya 3', language: 'hindi', genre: 'Comedy', duration: '2h 22m', image: 'https://www.insideboxoffice.com/wp-content/uploads/2024/11/Bhool-Bhulaiya-3-Movie-Review.jpg' },
-    { title: 'Animal', language: 'hindi', genre: 'action', duration: '3h 21m', image: 'https://i.ytimg.com/vi/t739wOpXRYU/sddefault.jpg' },
+    { title: 'Animal', language: 'hindi', genre: 'action', duration: '3h 21m', image: 'https://m.media-amazon.com/images/I/61OmlO9stnL._AC_UF894,1000_QL80_.jpg' },
     { title: 'Avengers End Game', language: 'English', genre: 'action', duration: '3h 1m', image: 'https://lh5.googleusercontent.com/proxy/QdR6wbC9xWdWyzEMdFRCv2lOqrQoRzZ3rMSxma77nqlvbP48A7ltjQs5baGivWx2H-WGVofJ3CdaTTegnDndf-ZcdwDYZFAnDf6nXZ1IxYbOXA' },
+    { title: 'Ek Dewewane ki Deewaniyat', language: 'hindi', genre:'Romance', duration: '2h 21m', image: 'https://m.media-amazon.com/images/M/MV5BY2UzNDZiM2EtYjk2MS00NGE5LTliYzktNGQxYWE5ZGUxOWE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' },
+    { title: 'Tere Ishq Mein', language: 'hindi', genre: 'Romance', duration: '2h 47m', image: 'https://images.filmibeat.com/img/popcorn/movie_posters/tereishkmein-20251114144423-23439.jpg' },
     { title: 'RRR', language: 'telugu', genre: 'drama', duration: '3h 7m', image: 'https://i.ytimg.com/vi/lDVQojLPI4Y/maxresdefault.jpg' },
-    { title: 'Pushpa 2', language: 'tamil', genre: 'action', duration: '3h 21m', image: 'https://i.ytimg.com/vi/IU3eUocFHkA/sddefault.jpg' },
+    { title: 'Pushpa 2', language: 'tamil', genre: 'action', duration: '3h 21m', image: 'https://m.media-amazon.com/images/M/MV5BZjllNTdiM2QtYjQ0Ni00ZGM1LWFlYmUtNWY0YjMzYWIxOTYxXkEyXkFqcGc@._V1_.jpg' },
 ];
 
 // Navigation functions
@@ -222,17 +224,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function filterMovies() {
-    const languageFilter = document.getElementById('languageFilter').value;
-    const genreFilter = document.getElementById('genreFilter').value;
+    const languageFilter = document.getElementById('languageFilter').value.toLowerCase();
+    const genreFilter = document.getElementById('genreFilter').value.toLowerCase();
 
     let filteredMovies = movies;
 
     if (languageFilter) {
-        filteredMovies = filteredMovies.filter(movie => movie.language === languageFilter);
+        filteredMovies = filteredMovies.filter(movie => movie.language.toLowerCase() === languageFilter);
     }
 
     if (genreFilter) {
-        filteredMovies = filteredMovies.filter(movie => movie.genre === genreFilter);
+        filteredMovies = filteredMovies.filter(movie => movie.genre.toLowerCase() === genreFilter);
     }
 
     displayMovies(filteredMovies);
