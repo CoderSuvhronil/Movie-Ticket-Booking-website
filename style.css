@@ -4,15 +4,20 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+/* HEADINGS */
+
 h1, h2 {
     color: #5022ac;
 }
 
+/* TEXT COLORS */
+
 p, span, a {
-    color: #330e4b !important;
+    color: #330e4b;
 }
 
-/* Section fade animation */
+/* SECTION FADE ANIMATION */
+
 .section {
     animation: fade 0.5s ease;
 }
@@ -22,17 +27,19 @@ p, span, a {
     to {opacity: 1;}
 }
 
-/* Gradient Header */
+/* HEADER GRADIENT */
+
 .gradient-bg {
     background: linear-gradient(135deg, #ff0058, #3c0874);
     box-shadow: 0px 4px 10px rgba(255, 0, 90, 0.4);
-    color: #00a6ff ;
+    color: #00a6ff;
 }
 
 /* NAVIGATION BUTTONS */
+
 nav button {
     transition: 0.4s;
-    color: #ffe3f5;  /* light pink */
+    color: #ffe3f5;
 }
 
 nav button:hover {
@@ -40,17 +47,75 @@ nav button:hover {
     transform: scale(1.08);
 }
 
+/* ============================= */
+/* WELCOME SECTION DESIGN */
+/* ============================= */
+
+.bollywood-gradient{
+
+    background:
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    text-align: center;
+    padding: 120px 20px;
+}
+
+/* Welcome Heading */
+
+.bollywood-gradient h2{
+    font-size: 52px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Welcome Text */
+
+.bollywood-gradient p{
+    font-size: 20px;
+    color: #f0f0f0;
+}
+
+/* Welcome Button */
+
+.bollywood-gradient button{
+    background: #ff0058;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.bollywood-gradient button:hover{
+    transform: scale(1.1);
+    background: #ff336d;
+}
+
+/* ============================= */
 /* MOVIE CARD */
+/* ============================= */
+
 .movie-card {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     border-radius: 18px;
     transition: 0.4s ease;
     border: 1px solid rgba(255,255,255,0.1);
-    color: #0a155f;
+    color: rgb(17, 1, 1);
+    overflow: hidden;
 }
 
+/* FIXED MOVIE POSTER SIZE */
+
 .movie-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
     transition: 0.4s ease;
 }
 
@@ -63,11 +128,12 @@ nav button:hover {
     box-shadow: 0 0 25px rgba(255, 0, 90, 0.6);
 }
 
-/* Book Button */
+/* MOVIE BUTTON */
+
 .movie-card button {
     background: #ff0058;
     transition: 0.3s;
-    color: #680846;
+    color: white;
 }
 
 .movie-card button:hover {
@@ -75,7 +141,10 @@ nav button:hover {
     transform: scale(1.08);
 }
 
+/* ============================= */
 /* THEATER CARD */
+/* ============================= */
+
 .theater-card {
     background: rgba(255, 255, 255, 0.07);
     border-radius: 16px;
@@ -83,7 +152,7 @@ nav button:hover {
     border: 1px solid rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
     transition: 0.3s;
-    color: #1e00ff;
+    color: white;
 }
 
 .theater-card:hover {
@@ -96,14 +165,17 @@ nav button:hover {
     border-radius: 8px;
     padding: 10px;
     font-weight: bold;
-    color: #ffe3f5; /* soft pink */
+    color: white;
 }
 
 .theater-card button:hover {
     transform: scale(1.1);
 }
 
-/* SEAT COLORS */
+/* ============================= */
+/* SEAT STYLES */
+/* ============================= */
+
 .seat {
     transition: 0.2s ease;
     border-radius: 5px;
@@ -126,21 +198,27 @@ nav button:hover {
     cursor: not-allowed;
 }
 
-/* Buttons */
+/* ============================= */
+/* BUTTON GLOBAL STYLE */
+/* ============================= */
+
 button {
     cursor: pointer;
     transition: 0.3s;
-    color: #ffe3f5;  /* pink */
 }
 
 button:hover {
     transform: scale(1.05);
 }
 
+/* ============================= */
+/* INPUT FIELDS */
+/* ============================= */
+
 #payment input, #login input {
     background: rgba(255,255,255,0.07);
     border: 1px solid rgba(255,255,255,0.2);
-    color: #110e01;
+    color: white;
     transition: 0.3s;
 }
 
@@ -149,16 +227,30 @@ button:hover {
     box-shadow: 0px 0px 10px rgba(255,0,90,0.4);
 }
 
-/* Success box */
+/* ============================= */
+/* SUCCESS BOX */
+/* ============================= */
+
 #success div {
-    background: rgba(255,255,255,0.09) !important;
+    background: rgba(255,255,255,0.09);
     border: 1px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(12px);
     color: #09a520;
 }
 
+/* ============================= */
+/* MOBILE RESPONSIVE */
+/* ============================= */
+
 @media (max-width: 600px) {
-    .movie-card, .theater-card {
+
+    .movie-card,
+    .theater-card {
         transform: scale(0.95);
     }
+
+    .bollywood-gradient h2{
+        font-size: 36px;
+    }
+
 }
