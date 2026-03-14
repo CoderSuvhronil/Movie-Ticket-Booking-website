@@ -11,7 +11,7 @@ const movies = [
     { title: 'Pathaan', language: 'hindi', genre: 'Action', duration: '2h 26m', image: 'https://i.pinimg.com/736x/6a/6d/b9/6a6db9a959576836fd5c42c8bc41d565.jpg' },
     { title: 'Jawaan', language: 'hindi', genre: 'Action', duration: '2h 49m', image: 'https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-sn4rud7dsil9l7enke2va06207-20230906130859.Medi.jpeg' },
     { title: 'Dunki', language: 'hindi', genre: 'Drama', duration: '2h 41m', image: 'https://stat4.bollywoodhungama.in/wp-content/uploads/2021/01/Dunki-2.jpg' },
-    { title: 'Housefull 5', language: 'hindi', genre: 'Comedy', duration: '2h 30m', image: 'https://assets-in.bmscdn.com/discovery-catalog/events/et00363347-jfmgxfggwz-landscape.jpg' },
+    { title: 'Dhurandar', language: 'hindi', genre: 'Action/Crime', duration: '3h 32m', image: 'https://lh5.googleusercontent.com/proxy/a3gv3hk2Qv1u74leTwjOdbyv4MudbbfGlx21FH4VpoSCgN3Y8GZ9P8To1tQXDmDScqqh2R9PMMC_qwgKCFuU_GUFG8HcD4xohFEz4_4tHOa6EA' },
     { title: 'Bhool Bhulaiya 3', language: 'hindi', genre: 'Comedy', duration: '2h 22m', image: 'https://www.insideboxoffice.com/wp-content/uploads/2024/11/Bhool-Bhulaiya-3-Movie-Review.jpg' },
     { title: 'Animal', language: 'hindi', genre: 'action', duration: '3h 21m', image: 'https://m.media-amazon.com/images/I/61OmlO9stnL._AC_UF894,1000_QL80_.jpg' },
     { title: 'Avengers End Game', language: 'English', genre: 'action', duration: '3h 1m', image: 'https://lh5.googleusercontent.com/proxy/QdR6wbC9xWdWyzEMdFRCv2lOqrQoRzZ3rMSxma77nqlvbP48A7ltjQs5baGivWx2H-WGVofJ3CdaTTegnDndf-ZcdwDYZFAnDf6nXZ1IxYbOXA' },
